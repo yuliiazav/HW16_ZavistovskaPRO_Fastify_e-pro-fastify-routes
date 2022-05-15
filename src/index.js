@@ -1,7 +1,6 @@
 import Fastify from 'fastify';
 
 import { users } from './users';
-import { use } from 'bcrypt/promises';
 
 const fastify = Fastify({
   logger: true,
