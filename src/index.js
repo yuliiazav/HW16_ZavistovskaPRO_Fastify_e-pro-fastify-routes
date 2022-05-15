@@ -1,16 +1,15 @@
 import Fastify from 'fastify';
 
+import { users } from './users';
+import { use } from 'bcrypt/promises';
+
 const fastify = Fastify({
   logger: true,
 });
-fastify.register(import('fastify-cookie'));
-fastify.register(import('fastify-multipart'), {
+fastify.register(import('@fastify/cors'));
+fastify.register(import('@fastify/multipart'), {
   addToBody: true,
 });
-fastify.register(import('fastify-cors'));
-
-fastify.get('/hello', (request, reply) => {
-  return reply.send('world');
-});
+fastify.register(import('@fastify/cookie'));
 
 export default fastify;
