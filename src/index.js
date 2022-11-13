@@ -79,9 +79,16 @@ fastify.get('/users', {
   const {filter, value} = request.query;
   const result = Object.values(users);
 
+  if (filter === 'age' && value){
+   const ageFilter = result.filter((user) => {
+        return user[filter] === +value;
+      })
+    reply.send(ageFilter);
+  }
+
   if (filter && value) {
     const filteredUsers = result.filter((user) => {
-        return user[filter] === value
+        return user[filter] === value;
       }
     )
     reply.send(filteredUsers);
